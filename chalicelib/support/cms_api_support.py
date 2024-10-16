@@ -50,19 +50,20 @@ def upload_csv_data(raw_body):
         # Convert DataFrame to a list of dictionaries
         documents = df.to_dict(orient='records')  # Convert to list of dicts for MongoDB
 
-        # Perform bulk insert
+        # Perform bulk insert, using insert_many to ensure atomic operation
         if documents:
-            # collection.insert_many(documents)
             mongo.insert_many_document(MOVIES_DATA_COLLECTION, documents)
         else:
             raise pd.errors.EmptyDataError(f"No data found in the CSV")
 
         return "Data uploaded successfully"
 
+    except UnicodeDecodeError:
+        raise BadRequestError("Error parsing the file. Please ensure it is well-formed CSV file.")
     except pd.errors.EmptyDataError:
         raise BadRequestError("No data found in the CSV.")
     except pd.errors.ParserError:
-        raise BadRequestError("Error parsing the CSV file. Please ensure it is well-formed.")
+        raise BadRequestError("Error parsing the file. Please ensure it is well-formed CSV file.")
     except BadRequestError as err:
         raise BadRequestError(str(err))
     except Exception as err:
