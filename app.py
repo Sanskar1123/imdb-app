@@ -1,6 +1,8 @@
-from chalice import Chalice, Blueprint
 import importlib
 import os
+from chalice import Chalice, Blueprint
+
+from chalicelib.common import init_support
 
 env = os.environ["ENV"]
 
