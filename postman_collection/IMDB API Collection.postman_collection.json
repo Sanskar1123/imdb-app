@@ -1,0 +1,116 @@
+{
+	"info": {
+		"_postman_id": "acddf420-734a-4dfe-a7f1-cfa7518080dc",
+		"name": "IMDB API Collection",
+		"description": "This API collection is a part of assignment for the SDE role at DailyRounds.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25461147"
+	},
+	"item": [
+		{
+			"name": "Fetch movies Copy",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/health_check",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"health_check"
+					]
+				},
+				"description": "API to ensure the service is running once deployed."
+			},
+			"response": []
+		},
+		{
+			"name": "Upload CSV Data",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/csv"
+					}
+				],
+				"body": {
+					"mode": "file",
+					"file": {
+						"src": "/Users/sanskara/Downloads/moveis.csv"
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/upload/movies/csv",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"upload",
+						"movies",
+						"csv"
+					]
+				},
+				"description": "API to upload the CSV file containing movies data. Use Binary body type to upload file on Postman."
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch movies",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"filter_params\":{\n        \"languages\": \"English\",\n        \"release_year\": 1995\n    },\n    \"sort_params\":{\n        \"release_date\": -1,\n        \"vote_average\": -1\n    },\n    \"page\": 1,\n    \"size\": 10\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/fetch/movies",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"fetch",
+						"movies"
+					]
+				},
+				"description": "API to fetch movies after filtering and sorting the data."
+			},
+			"response": []
+		}
+	]
+}
