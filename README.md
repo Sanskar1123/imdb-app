@@ -67,16 +67,13 @@ To test the APIs directly, you can import the existing [Postman collection](./po
 
 ## API Endpoints
 
-- Healthcheck API
-Check if the service is running:
+- Healthcheck API [Check if the service is running]
 <img width="532" alt="image" src="https://github.com/user-attachments/assets/d1f08135-9b55-4ef3-9c72-283b6d9c4e27">
 
-- Upload File API
-Upload a CSV file to add movie data:
+- Upload File API [Upload a CSV file to add movie data]
 <img width="608" alt="image" src="https://github.com/user-attachments/assets/ff688727-d658-477b-9b3f-d4415bf70bf7">
 
-- Fetch Data API
-Retrieve movie records with pagination, filtering, and sorting options:
+- Fetch Data API [Retrieve movie records with pagination, filtering, and sorting options]
 <img width="581" alt="image" src="https://github.com/user-attachments/assets/e9875478-ad9d-41b5-baf4-80323d801072">
 
 
@@ -94,7 +91,10 @@ Then, execute the generate_coverage.sh script:
 ./generate_coverage.sh 
 ```
 
-This will generate code coverage reports (.coverage and coverage.xml) and help you ensure the application's reliability and quality.
+This will generate code coverage reports (.coverage and coverage.xml) and help you ensure the application's reliability and quality. Find the latest coverage results below:
+
+<img width="505" alt="image" src="https://github.com/user-attachments/assets/39d2885e-5b10-42cc-b92a-cabe84dcf54a">
+
 
 ## Contributions
 
