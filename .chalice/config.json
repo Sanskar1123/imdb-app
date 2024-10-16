@@ -4,6 +4,7 @@
     "stages": {
         "dev": {
             "api_gateway_stage": "api",
+            "max_request_body_size": 104857600,
             "environment_variables": {
                 "ENV": "local",
                 "SERVICE_NAME": "imdb-app",
