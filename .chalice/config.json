@@ -4,10 +4,10 @@
     "stages": {
         "dev": {
             "api_gateway_stage": "api",
-            "max_request_body_size": 104857600,
             "environment_variables": {
                 "ENV": "local",
                 "SERVICE_NAME": "imdb-app",
+                "MAX_CSV_FILE_SIZE_IN_MB": "100",
                 "MONGO_CONNECTION_STRING": "mongodb:{password}//localhost:27017/",
                 "MONGODB_PASSWORD": ""
             }

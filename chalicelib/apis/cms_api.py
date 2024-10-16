@@ -1,4 +1,5 @@
 import json
+import os
 
 from chalice import Blueprint, Response
 from chalicelib.common import cors_support, log_support
@@ -21,6 +22,9 @@ def upload_csv():
 
         if not body:
             raise Exception("No file uploaded")
+        max_size = int(os.getenv("MAX_CSV_FILE_SIZE_IN_MB", 1e2))  # 100 mb by default
+        if len(body) > (max_size*1e6):
+            raise Exception(f"File size should be less than {max_size}MB")
 
         response_message = cms_api_support.upload_csv_data(body)
 
