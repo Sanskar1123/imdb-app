@@ -98,7 +98,6 @@ class Mongo:
 
         query_result = collection.find(*args, **kwargs)
         if sort_params:
-            print("FINAL SORT PARAMS", sort_params)
             query_result = query_result.sort(sort_params)
         if start_index:
             query_result = query_result.skip(start_index)
