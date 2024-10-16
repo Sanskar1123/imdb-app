@@ -22,12 +22,12 @@ def upload_csv_data(raw_body):
     Raises:
         BadRequestError: If headers are invalid or if any other issue occurs.
     """
-    expected_headers = [
+    expected_headers = {
         "budget", "homepage", "original_language", "original_title",
         "overview", "release_date", "revenue", "runtime",
         "status", "title", "vote_average", "vote_count",
         "production_company_id", "genre_id", "languages"
-    ]
+    }
     try:
 
         # Decode raw body
@@ -37,7 +37,7 @@ def upload_csv_data(raw_body):
         df = pd.read_csv(StringIO(body))
 
         # Validate headers
-        if list(df.columns) != expected_headers:
+        if set(df.columns) != expected_headers:
             raise BadRequestError(f"Invalid CSV headers. Expected: {str(expected_headers)}")
 
         if 'release_date' in df.columns:
@@ -98,7 +98,7 @@ def validate_fetch_params(filter_params, sort_params, page_num, size_param):
 
     total_doc_count = mongo.count_documents_by_filter(MOVIES_DATA_COLLECTION, restricted_filter_params)
     if total_doc_count == 0:
-        return list()
+        raise LookupError("No data found in mongodb collection")
     max_page = (total_doc_count + size_param - 1) // size_param  # Calculate maximum number of pages
 
     # Ensuring page_num does not exceed max_page
@@ -134,8 +134,11 @@ def fetch_movies(filter_params, sort_params, page_num, size_param):
                                                  size=size_param, projection_query={'_id': False})
         log_support.console_log("Fetched required records")
         return records
+    except LookupError as err:
+        if err == "No data found in mongodb collection":
+            return list()
     except BadRequestError as err:
         raise BadRequestError(str(err))
     except Exception as err:
         raise Exception(f"An error occurred while fetching filtered movies data: {str(err)}")
-    return False
+    return list()
