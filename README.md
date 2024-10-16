@@ -14,10 +14,10 @@ This project is part of an assignment by DailyRounds. It provides a RESTful API 
 
 ## Features
 
-- **Upload Movies via CSV**: Upload movie data using a CSV file to populate the database.
-- **Fetch Movies with Pagination**: Retrieve movie records with pagination, filtering, and sorting support.
-- **Data Validation**: Validates the input data for consistency and correctness during uploads.
-- **Error Handling & Logging**: Provides robust error handling with detailed logging for troubleshooting.
+This project is a content upload and review system with following major features:
+
+- **Upload CSV files containing Movies data**: Upload movie data using a CSV file to populate the database.
+- **Review Movie data**: Retrieve all movie data in the system with pagination, filtering, and sorting support.
 
 ## Requirements
 
@@ -98,4 +98,4 @@ This will generate code coverage reports (.coverage and coverage.xml) and help y
 
 ## Contributions
 
-Contributions are welcome! Feel free to submit a pull request or open an issue for discussion. Thank you for your interest!
+Contributions to the project are always welcome! Feel free to submit a pull request or open an issue for discussion. Thank you for your interest!
