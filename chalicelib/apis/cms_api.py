@@ -10,7 +10,7 @@ use_api_key = "True"
 no_api_key = False
 
 
-@cms_api.route('/upload/movies/csv', methods=['POST'], cors=cors_support.cors_config,
+@cms_api.route('/api/upload/movies/csv', methods=['POST'], cors=cors_support.cors_config,
                content_types=['text/csv', 'application/csv'])
 def upload_csv():
     """
@@ -18,6 +18,9 @@ def upload_csv():
     """
     try:
         body = cms_api.current_request.raw_body
+
+        if not body:
+            raise Exception("No file uploaded")
 
         response_message = cms_api_support.upload_csv_data(body)
 
@@ -27,7 +30,7 @@ def upload_csv():
         return Response(status_code=502, body={"error": f"Exception @upload_csv: {str(err)}"})
 
 
-@cms_api.route('/fetch/movies', methods=['POST'], cors=cors_support.cors_config)
+@cms_api.route('/api/fetch/movies', methods=['POST'], cors=cors_support.cors_config)
 def fetch_movies():
     """
     API to get a list of movies with pagination, filtering, and sorting.
